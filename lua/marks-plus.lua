@@ -399,3 +399,4 @@ function m.popup_delete_all_marks()
 	popup_delete_marks(marklist, 'ALL MARKS')
 end
 
+return m
