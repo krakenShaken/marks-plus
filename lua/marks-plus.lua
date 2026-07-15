@@ -65,7 +65,7 @@ local function next_mark(lowercase, reverse)
 		end
 
 		--Does mark exist?
-		if mark_pos[1] ~= 0 and ((mark_pos[3] == nil or vim.api.nvim_buf_is_valid(mark_pos[3]))) then
+		if mark_pos[1] ~= 0 then
 			--Mark on same line as cursor?
 			if (mark_pos[1] == cur_line[1] and mark_pos[3] == cur_buffer) then
 				cur_pos_mark.mark_name = mark_char
