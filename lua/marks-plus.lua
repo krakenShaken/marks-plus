@@ -109,21 +109,21 @@ local function next_mark(lowercase, reverse)
 			for _, val in ipairs(available_marks) do
 				if (not reverse and val.internal_number > nearest_mark_same_buffer.internal_number) or
 					(reverse and val.internal_number < nearest_mark_same_buffer.internal_number) then
-					local success = pcall(vim.cmd.echo, "'" .. val.mark_name)
+					local success = pcall(vim.cmd, "'" .. val.mark_name)
 					if success then return end
 				end
 			end
 			--No mark bigger -> Just move to first mark in table that is not the nearest mark
 			for _, val in ipairs(available_marks) do
 				if val.internal_number ~= nearest_mark_same_buffer.internal_number then
-					local success = pcall(vim.cmd.echo, "'" .. val.mark_name)
+					local success = pcall(vim.cmd, "'" .. val.mark_name)
 					if success then return end
 				end
 			end
 		end
 		--Otherwise just move to first letter found (no marks in current buffer)
 		for _, val in ipairs(available_marks) do
-			local success = pcall(vim.cmd.echo, "'" .. val.mark_name)
+			local success = pcall(vim.cmd, "'" .. val.mark_name)
 			if success then return end
 		end
 	else
@@ -132,14 +132,14 @@ local function next_mark(lowercase, reverse)
 		for _, val in ipairs(available_marks) do
 			if (not reverse and val.internal_number > cur_pos_mark.internal_number) or
 				(reverse and val.internal_number < cur_pos_mark.internal_number) then
-				local success = pcall(vim.cmd.echo, "'" .. val.mark_name)
+				local success = pcall(vim.cmd, "'" .. val.mark_name)
 				if success then return end
 			end
 		end
 		--No mark bigger -> Just move to first mark in table that is not the current mark
 		for _, val in ipairs(available_marks) do
 			if val.internal_number ~= cur_pos_mark.internal_number then
-				local success = pcall(vim.cmd.echo, "'" .. val.mark_name)
+				local success = pcall(vim.cmd, "'" .. val.mark_name)
 				if success then return end
 			end
 		end
