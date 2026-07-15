@@ -62,10 +62,11 @@ local function next_mark(lowercase, reverse)
 		else
 			mark_char = string.char(ascii_start + i)
 			mark_pos = vim.api.nvim_get_mark(mark_char, {})
+			mark_pos = vim.api.nvim_buf_get_mark(mark_pos[3], mark_char)
 		end
 
 		--Does mark exist?
-		if mark_pos[1] ~= 0 then
+		if mark_pos[1] ~= 0 then --mark_pos[4] ~= '-invalid-' and mark_pos[4] ~= 'existing_window = nil' then
 			--Mark on same line as cursor?
 			if (mark_pos[1] == cur_line[1] and mark_pos[3] == cur_buffer) then
 				cur_pos_mark.mark_name = mark_char
@@ -398,4 +399,3 @@ function m.popup_delete_all_marks()
 	popup_delete_marks(marklist, 'ALL MARKS')
 end
 
-return m
